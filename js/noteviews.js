@@ -13,11 +13,20 @@ export default class notesview {
 
     <div class="container">
       <div class="header">
-        <img src="images/logo.png" alt="" />
-        <h1>Simple Note</h1>
+        <div class="head">
+        <i class="ri-booklet-line"></i>
+        <h1>SimpleNote</h1>
+        </div>
+        <div class="right">
+        <div class="dark-mode" id="theme-switcher">
+          <i class="ri-moon-line" ></i>
+          <i class="ri-sun-line"></i> 
+        </div>
+        <i class="ri-information-line info-btn"></i>
+        </div>
       </div>
       <a  class="add-new button">
-        <img src="images/addnote.png" alt="" />
+        <i class="ri-add-line"></i>
       </a>
       <div class="notes"></div>
       <div class="footer">
@@ -28,9 +37,9 @@ export default class notesview {
     <div class="add-new-note hidden">
 
         <div class="controller">
-          <svg class="button back" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M7.828 11H20v2H7.828l5.364 5.364-1.414 1.414L4 12l7.778-7.778 1.414 1.414z"/></svg>
+          <i class="ri-arrow-left-line button back"></i>
 
-         <svg class="button delete" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32"><path fill="none" d="M0 0h24v24H0z"/><path d="M17 6h5v2h-2v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V8H2V6h5V3a1 1 0 0 1 1-1h8a1 1 0 0 1 1 1v3zm1 2H6v12h12V8zm-4.586 6l1.768 1.768-1.414 1.414L12 15.414l-1.768 1.768-1.414-1.414L10.586 14l-1.768-1.768 1.414-1.414L12 12.586l1.768-1.768 1.414 1.414L13.414 14zM9 4v2h6V4H9z"/></svg>
+         <i class="ri-delete-bin-2-line button delete"></i>
         </div>
 
         <div class="note-header-area">
@@ -38,13 +47,42 @@ export default class notesview {
             <p class="note-date"></p>
         </div>
 
-        <div class="note-text-area">
-          
+        <div class="note-text-area">      
             <textarea id="textarea"  maxlength="300" class="textarea" placeholder="write note here..." ></textarea>
-
             <span class="textarea_count" id="textarea_count">0/350</span>
         </div>
     </div>
+
+    <div class="about hidden">
+      <div class="about-header">
+        <i class="ri-arrow-left-line about-back"></i>
+      </div>
+      <div class="about-text-area">
+        <div class="about-logo">
+          <i class="ri-booklet-line"></i>
+          <h1>SimpleNote</h1>
+        </div>
+        <p class="about-version"></p>
+        <p class="about-info">
+        The simple note  is minimalist-basic note taking app runs as browser extension. 
+        App uses Local Storage to store all note data. 
+        App works on Google Chrome , Firefox and Opera.
+        App basically works in all Chromium based browsers.
+        </p>
+        <div class="about-buttons">
+          <div class="support about-btn ">
+            <i class="ri-heart-3-line"></i>
+            <p>support me</p>
+          </div>
+          <div class="bug about-btn">
+            <i class="ri-bug-line"></i>
+            <p>bug report</p>
+          </div>
+        </div>
+      </div>
+      <div class="about-footer"> <p>made by <a href="">snndmnsz</a> with 🖤</p></div>
+    </div> 
+
     `;
 
     const btnAddNote = this.root.querySelector(".add-new");
@@ -57,6 +95,12 @@ export default class notesview {
     const inputTitle = this.root.querySelector(".inputTitle");
 
     const deleteButton = this.root.querySelector(".delete");
+
+    const aboutPageContainer = this.root.querySelector(".about");
+    const aboutBack = this.root.querySelector(".about-back");
+    const aboutInfo = this.root.querySelector(".info-btn");
+
+    const version = this.root.querySelector(".about-version");
 
     btnAddNote.addEventListener("click", () => {
       inputBody.value = "";
@@ -76,6 +120,20 @@ export default class notesview {
       addNewNoteContainer.classList.add("hidden");
       mainContainer.classList.remove("hidden");
       this.onNoteDelete();
+    });
+
+    aboutInfo.addEventListener("click", () => {
+      fetch("../manifest.json")
+        .then((response) => response.json())
+        .then((data) => (version.innerHTML = `v${data.version}`))
+        .catch((error) => console.log(error));
+      mainContainer.classList.add("hidden");
+      aboutPageContainer.classList.remove("hidden");
+    });
+
+    aboutBack.addEventListener("click", () => {
+      aboutPageContainer.classList.add("hidden");
+      mainContainer.classList.remove("hidden");
     });
 
     const counter = this.root.querySelector(".textarea_count");
@@ -110,12 +168,49 @@ export default class notesview {
         this.onNoteEdit(updatedTitle, updatedBody);
       });
     });
+
+    
+ 
+    //document.documentElement.setAttribute("dark-mode", "light");
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+      let trans = () => {
+        document.documentElement.classList.add("transition");
+        window.setTimeout(() => {
+          document.documentElement.classList.remove("transition");
+        }, 500);
+      };
+
+
+      const getDark = localStorage.getItem("selected-theme");
+      if (getDark !== null){
+        document.documentElement.setAttribute("dark-mode", getDark);
+      }else if (getDark === null){
+        localStorage.setItem("selected-theme", "dark");
+        const getDark = localStorage.getItem("selected-theme");
+        document.documentElement.setAttribute("dark-mode", getDark);
+      }
+        
+
+      // Get our button switcher
+      var themeSwitcher = document.getElementById("theme-switcher");
+      // When our button gets clicked
+      themeSwitcher.onclick = function () {
+      
+        var currentTheme = document.documentElement.getAttribute("dark-mode");
+        var switchToTheme = currentTheme === "dark" ? "light" : "dark";
+        document.documentElement.setAttribute("dark-mode", switchToTheme);
+        localStorage.setItem("selected-theme", switchToTheme);
+
+        trans();
+      };
+    });
   }
 
-  _createListItemHTML(id, title, body, updated) {
+  _createListItemHTML(id, title, body, updated, color) {
     const MAX_BODY_LENGTH = 25;
 
-    return `<div class="note" data-note-id="${id}">
+    return `<div style="border-left: 4px solid ${color};" class="note" data-note-id="${id}">
             <div class="note-info">
               <h2 class="note-header">${title}</h2>
               <p class="date">
@@ -141,7 +236,8 @@ export default class notesview {
         note.id,
         note.title,
         note.body,
-        new Date(note.updated)
+        new Date(note.updated),
+        note.color
       );
       notesListContainer.insertAdjacentHTML("beforeend", html);
     }
@@ -155,12 +251,11 @@ export default class notesview {
   }
 
   updateActiveNote(note) {
-    this.root.querySelector(".note-date").innerHTML ="";
+    this.root.querySelector(".note-date").innerHTML = "";
     this.root.querySelector(".inputTitle").value = note.title;
     this.root.querySelector(".textarea").value = note.body;
-    console.log(note.updated);
+    //console.log(note.updated);
     try {
-    
       if (note.updated == undefined) {
         //console.log("invalid bu kisim ");
       } else {
@@ -171,20 +266,15 @@ export default class notesview {
         this.root.querySelector(".note-date").innerHTML = timestamp;
         //console.log("invalid ddegil ");
       }
-        //this.root.querySelector(".note-date").innerHTML = timestamp;
+      //this.root.querySelector(".note-date").innerHTML = timestamp;
     } catch (error) {
       console.error("date error.");
     }
-    
-   
 
     const inputBody = this.root.querySelector(".textarea");
     const counter = this.root.querySelector(".textarea_count");
     const number = inputBody.value.length;
     counter.innerHTML = number + "/300";
-
-
-    
 
     this.root.querySelector(".container").classList.add("hidden");
     this.root.querySelector(".add-new-note").classList.remove("hidden");

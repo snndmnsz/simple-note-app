@@ -26,6 +26,8 @@ export default class NotesAPI {
         //console.log("empty");
         return;
       } 
+      noteToSave.color =
+        "hsla(" + ~~(360 * Math.random()) + "," + "70%," + "80%,1)";
       noteToSave.updated = new Date().toISOString();
       notes.push(noteToSave);
     }
