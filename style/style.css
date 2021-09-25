@@ -20,7 +20,7 @@ body {
   width: 330px;
   height: 450px;
 
-  border: 1px solid black;
+  /* border: 1px solid black; */
   background-color: var(--bg-main);
   display: flex;
   flex-direction: column;
@@ -73,8 +73,8 @@ body {
   align-items: center;
   justify-content: center;
 }
-.add-new:hover{
-    background-color: var(--hover-bg);
+.add-new:hover {
+  background-color: var(--hover-bg);
 }
 
 .add-new img {
@@ -138,18 +138,24 @@ body {
   text-align: center;
 }
 .footer p {
+  letter-spacing: 2px;
   justify-self: center;
-  font-size: 10px;
+  font-size: 9px;
   margin-bottom: 3px;
   font-family: "Poppins", sans-serif;
 }
 
 .footer p a {
+  letter-spacing: 1px;
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  font-size: 11px;
+  font-size: 10px;
   text-decoration: none;
   color: #4d4d4d;
+}
+
+.footer p a:hover {
+  opacity: 85%;
 }
 
 .notes::-webkit-scrollbar {
@@ -162,7 +168,7 @@ body {
 }
 
 /* * custom scroll bar */
-/* ::-webkit-scrollbar {
+::-webkit-scrollbar {
   width: 17px;
 }
 ::-webkit-scrollbar-track {
@@ -181,7 +187,6 @@ body {
   border: 6px solid transparent;
   background-clip: content-box;
 }
- */
 
 .button {
   transition: 0.2s;
@@ -198,7 +203,7 @@ body {
 /* *ADD NEW NOTE PART* */
 
 .add-new-note {
-  width: 80%;
+  width: 85%;
   height: 95%;
   justify-self: center;
   align-self: center;
@@ -206,7 +211,6 @@ body {
   grid-auto-columns: 1fr;
   grid-auto-rows: 1fr;
   grid-template-rows: 0.3fr 0.5fr 2.2fr;
- 
 }
 .controller {
   grid-area: 1 / 1 / 2 / 2;
@@ -234,6 +238,7 @@ body {
 }
 .note-header-area input::placeholder {
   opacity: 50%;
+  font-weight: 500;
 }
 .note-header-area .note-date {
   color: var(--date);
@@ -244,7 +249,7 @@ body {
 .note-text-area {
   grid-area: 3 / 1 / 4 / 2;
   height: 100%;
-  margin-top: 10px;
+  /* margin-top: 5px; */
   text-align: right;
 }
 
@@ -258,18 +263,14 @@ body {
   background-color: transparent;
   resize: none;
   outline: none;
-  overflow: hidden;
 }
 
 .note-text-area span {
-    
-    height: 10%;
-    font-family: "Poppins", sans-serif;
+  height: 10%;
+  font-family: "Poppins", sans-serif;
   font-size: 10px;
   text-decoration: none;
   color: #4d4d4d;
-
 }
-
 
 /*  */

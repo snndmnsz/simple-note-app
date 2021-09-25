@@ -2,7 +2,7 @@
     "manifest_version":2,
     "name":"Simple Note",
     "version":"1.0.0",
-    "description":"....",
+    "description":"A simple minimalist note app for browser.",
     "icons":{
         "48":"images/icon48.png"
     },
