@@ -52,7 +52,7 @@ export default class notesview {
       </a>
       <div class="notes"></div>
       <div class="footer">
-        <p>made by <a href="https://github.com/snndmnsz" target="_blank" rel="noopener noreferrer">snndmnsz</a> with 🖤</p>
+        <p>made with 🖤 by <a href="https://github.com/snndmnsz" target="_blank" rel="noopener noreferrer">snndmnsz</a></p>
       </div>
     </div>
 
@@ -102,7 +102,7 @@ export default class notesview {
           </div>
         </div>
       </div>
-      <div class="about-footer"> <p>made by <a href="">snndmnsz</a> with 🖤</p></div>
+      <div class="about-footer"> <p>made with 🖤 by <a href="">snndmnsz</a></p></div>
     </div> 
 
     `;
@@ -201,9 +201,6 @@ export default class notesview {
       
     });
 
-    
- 
-    //document.documentElement.setAttribute("dark-mode", "light");
 
     document.addEventListener("DOMContentLoaded", function (event) {
       let trans = () => {
@@ -213,12 +210,8 @@ export default class notesview {
         }, 500);
       };
 
-
-
       const getUnderstand = localStorage.getItem("disclaimer");
-      if (getUnderstand === null) {
-        localStorage.setItem("disclaimer", "no");
-      } else if (getUnderstand === "yes") {
+      if (getUnderstand === "yes") {
         understanContainer.classList.add("hidden");
         mainContainer.classList.remove("hidden");
       } else if (getUnderstand === "no") {
@@ -226,16 +219,12 @@ export default class notesview {
         understanContainer.classList.remove("hidden");
       }
       
-      
-
-
-
 
       const getDark = localStorage.getItem("selected-theme");
       if (getDark !== null){
         document.documentElement.setAttribute("dark-mode", getDark);
       }else if (getDark === null){
-        localStorage.setItem("selected-theme", "dark");
+        localStorage.setItem("selected-theme", "light");
         const getDark = localStorage.getItem("selected-theme");
         document.documentElement.setAttribute("dark-mode", getDark);
       }
