@@ -89,22 +89,25 @@ export default class notesview {
         The simple note  is minimalist-basic note taking app runs as browser extension. 
         App uses Local Storage to store all note data. 
         App works on Google Chrome , Firefox and Opera.
-        App basically works in all Chromium based browsers.
         </p>
         <div class="about-buttons">
-          <div class="support about-btn ">
+          <a class="support about-btn" href="https://github.com/snndmnsz" target="_blank">
             <i class="ri-heart-3-line"></i>
             <p>support me</p>
-          </div>
-          <div class="bug about-btn">
+          </a>
+          <a class="bug about-btn" href="https://github.com/snndmnsz" target="_blank" >
             <i class="ri-bug-line"></i>
             <p>bug report</p>
-          </div>
+          </a>
         </div>
       </div>
-      <div class="about-footer"> <p>made with 🖤 by <a href="">snndmnsz</a></p></div>
+      <div class="about-footer"> <p>made with 🖤 by <a href="https://github.com/snndmnsz" target="_blank" >snndmnsz</a></p></div>
     </div> 
 
+    <div class="deletepopup ">
+      <p>deleted</p>
+      <i class="ri-delete-bin-7-fill"></i>
+    </div>
     `;
 
     const btnAddNote = this.root.querySelector(".add-new");
@@ -126,6 +129,7 @@ export default class notesview {
     const understanButton = this.root.querySelector(".front-btn");
     const understanContainer = this.root.querySelector(".front-page");
 
+    const deletepopup = this.root.querySelector(".deletepopup");
 
     btnAddNote.addEventListener("click", () => {
       inputBody.value = "";
@@ -142,6 +146,12 @@ export default class notesview {
     });
 
     deleteButton.addEventListener("click", () => {
+      deletepopup.classList.add("p-visible");
+
+      setTimeout(() => {
+        deletepopup.classList.remove("p-visible");
+      }, 1600);
+
       addNewNoteContainer.classList.add("hidden");
       mainContainer.classList.remove("hidden");
       this.onNoteDelete();
@@ -198,9 +208,7 @@ export default class notesview {
       localStorage.setItem("disclaimer", "yes");
       understanContainer.classList.add("hidden");
       mainContainer.classList.remove("hidden");
-      
     });
-
 
     document.addEventListener("DOMContentLoaded", function (event) {
       let trans = () => {
@@ -218,12 +226,11 @@ export default class notesview {
         mainContainer.classList.add("hidden");
         understanContainer.classList.remove("hidden");
       }
-      
 
       const getDark = localStorage.getItem("selected-theme");
-      if (getDark !== null){
+      if (getDark !== null) {
         document.documentElement.setAttribute("dark-mode", getDark);
-      }else if (getDark === null){
+      } else if (getDark === null) {
         localStorage.setItem("selected-theme", "light");
         const getDark = localStorage.getItem("selected-theme");
         document.documentElement.setAttribute("dark-mode", getDark);
@@ -233,7 +240,6 @@ export default class notesview {
       var themeSwitcher = document.getElementById("theme-switcher");
       // When our button gets clicked
       themeSwitcher.onclick = function () {
-      
         var currentTheme = document.documentElement.getAttribute("dark-mode");
         var switchToTheme = currentTheme === "dark" ? "light" : "dark";
         document.documentElement.setAttribute("dark-mode", switchToTheme);
@@ -245,7 +251,7 @@ export default class notesview {
   }
 
   _createListItemHTML(id, title, body, updated, color) {
-    const MAX_BODY_LENGTH = 25;
+    const MAX_BODY_LENGTH = 30;
 
     return `<div style="border-left: 4px solid ${color};" class="note" data-note-id="${id}">
             <div class="note-info">
@@ -310,8 +316,14 @@ export default class notesview {
 
     const inputBody = this.root.querySelector(".textarea");
     const counter = this.root.querySelector(".textarea_count");
+
     const number = inputBody.value.length;
     counter.innerHTML = number + "/300";
+    if (number == "300") {
+      counter.style.color = "#FF5C58";
+    } else {
+      counter.style.color = "#4d4d4d";
+    }
 
     this.root.querySelector(".container").classList.add("hidden");
     this.root.querySelector(".add-new-note").classList.remove("hidden");
