@@ -11,7 +11,29 @@ export default class notesview {
     this.onReturn = onReturn;
     this.root.innerHTML = `
 
-    <div class="container">
+    <div class="front-page">
+      <div class="front-header">
+        <i class="ri-booklet-line"></i>
+        <h1>SimpleNote</h1>
+      </div>
+      <div class="front-error">
+        <i class="ri-error-warning-line"></i>
+      </div>
+      <div class="front-text">
+        <p>
+          SimpleNote App saves data to local storage. If you delete the cookies,
+          all the notes also will be deleted.
+        </p>
+        <p>Please do not write anything very
+          important to here and backup data before deleting cookies.
+          <span>We are not responsible for the loss of your data.</span></p>
+      </div>
+      <div class="front-button">
+        <div class="front-btn">I UNDERSTAND</div>
+      </div>
+    </div>
+
+    <div class="container hidden">
       <div class="header">
         <div class="head">
         <i class="ri-booklet-line"></i>
@@ -99,8 +121,11 @@ export default class notesview {
     const aboutPageContainer = this.root.querySelector(".about");
     const aboutBack = this.root.querySelector(".about-back");
     const aboutInfo = this.root.querySelector(".info-btn");
-
     const version = this.root.querySelector(".about-version");
+
+    const understanButton = this.root.querySelector(".front-btn");
+    const understanContainer = this.root.querySelector(".front-page");
+
 
     btnAddNote.addEventListener("click", () => {
       inputBody.value = "";
@@ -169,6 +194,13 @@ export default class notesview {
       });
     });
 
+    understanButton.addEventListener("click", () => {
+      localStorage.setItem("disclaimer", "yes");
+      understanContainer.classList.add("hidden");
+      mainContainer.classList.remove("hidden");
+      
+    });
+
     
  
     //document.documentElement.setAttribute("dark-mode", "light");
@@ -182,6 +214,23 @@ export default class notesview {
       };
 
 
+
+      const getUnderstand = localStorage.getItem("disclaimer");
+      if (getUnderstand === null) {
+        localStorage.setItem("disclaimer", "no");
+      } else if (getUnderstand === "yes") {
+        understanContainer.classList.add("hidden");
+        mainContainer.classList.remove("hidden");
+      } else if (getUnderstand === "no") {
+        mainContainer.classList.add("hidden");
+        understanContainer.classList.remove("hidden");
+      }
+      
+      
+
+
+
+
       const getDark = localStorage.getItem("selected-theme");
       if (getDark !== null){
         document.documentElement.setAttribute("dark-mode", getDark);
@@ -190,7 +239,6 @@ export default class notesview {
         const getDark = localStorage.getItem("selected-theme");
         document.documentElement.setAttribute("dark-mode", getDark);
       }
-        
 
       // Get our button switcher
       var themeSwitcher = document.getElementById("theme-switcher");
