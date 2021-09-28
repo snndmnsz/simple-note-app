@@ -21,11 +21,11 @@ export default class notesview {
       </div>
       <div class="front-text">
         <p>
-          SimpleNote App saves data to local storage. If you delete the cookies,
-          all the notes also will be deleted.
+          SimpleNote App saves data to local storage. If you uninstall the browser,
+          all the notes will be deleted.
         </p>
         <p>Please do not write anything very
-          important to here and backup data before deleting cookies.
+          important to here and backup data before uninstalling browser.
           <span>We are not responsible for the loss of your data.</span></p>
       </div>
       <div class="front-button">
