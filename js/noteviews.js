@@ -50,7 +50,8 @@ export default class notesview {
       <a  class="add-new button">
         <i class="ri-add-line"></i>
       </a>
-      <div class="notes"></div>
+      <div class="notes">
+      </div>
       <div class="footer">
         <p>made with 🖤 by <a href="https://github.com/snndmnsz" target="_blank" rel="noopener noreferrer">snndmnsz</a></p>
       </div>
@@ -86,7 +87,7 @@ export default class notesview {
         </div>
         <p class="about-version"></p>
         <p class="about-info">
-        The simple note  is minimalist-basic note taking app runs as browser extension. 
+        SimpleNote  is minimalist-basic note taking app runs as browser extension. 
         App uses Local Storage to store all note data. 
         App works on Google Chrome , Firefox and Opera.
         </p>
@@ -95,7 +96,7 @@ export default class notesview {
             <i class="ri-heart-3-line"></i>
             <p>support me</p>
           </a>
-          <a class="bug about-btn" href="https://github.com/snndmnsz" target="_blank" >
+          <a class="bug about-btn" href="mailto:snndmnszdev@protonmail.com?subject=Bug Report&body=Which part is not working: " >
             <i class="ri-bug-line"></i>
             <p>bug report</p>
           </a>
@@ -104,7 +105,7 @@ export default class notesview {
       <div class="about-footer"> <p>made with 🖤 by <a href="https://github.com/snndmnsz" target="_blank" >snndmnsz</a></p></div>
     </div> 
 
-    <div class="deletepopup ">
+    <div class="deletepopup">
       <p>deleted</p>
       <i class="ri-delete-bin-7-fill"></i>
     </div>
@@ -150,7 +151,7 @@ export default class notesview {
 
       setTimeout(() => {
         deletepopup.classList.remove("p-visible");
-      }, 1600);
+      }, 900);
 
       addNewNoteContainer.classList.add("hidden");
       mainContainer.classList.remove("hidden");
@@ -272,7 +273,24 @@ export default class notesview {
     const notesListContainer = this.root.querySelector(".notes");
 
     // Empty list
-    notesListContainer.innerHTML = "";
+    //notesListContainer.innerHTML = "";
+
+    const datass = localStorage.getItem("notesapp-notes");
+    if (datass === "[]" || datass === null) {
+      //emptystorage.classList.remove("hidden");
+      notesListContainer.innerHTML = "";
+      notesListContainer.innerHTML = `
+      <div class="empty-storage">
+          <i class="ri-database-2-line"></i>
+          <p>Nothing to show here, <br> create new note...</p>
+        </div>`;
+      //console.log("local storage bosta suanda");
+    } else {
+      //emptystorage.classList.add("hidden");
+      //console.log("bos degilmis");
+      notesListContainer.innerHTML = "";
+    }
+    
 
     for (const note of notes) {
       const html = this._createListItemHTML(

@@ -154,6 +154,7 @@ body {
 
 .notes {
   grid-area: 3 / 1 / 4 / 2;
+
   overflow: scroll;
   scroll-behavior: smooth;
   overflow-x: hidden;
@@ -664,7 +665,7 @@ body {
   box-shadow: 0px 13px 25px -10px rgba(0,0,0,0.25);
   visibility: hidden;
   opacity: 0;
-  transition: opacity 0.3s,0.3s, visibility 0.3s;
+  transition: opacity 0.4s,0.4s, visibility 0.4s;
   transform: translateY(-13px);
 }
 .deletepopup p{
@@ -683,3 +684,29 @@ body {
 }
 
 /* **DELETED POPUP  */
+
+
+.empty-storage{
+  color: var(--button-shadow);
+  opacity: 80%;
+
+  margin: 30% auto;
+  width: 80%;
+
+  text-align: center;
+
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+}
+.empty-storage i{
+  font-size: 30px;
+}
+.empty-storage p{
+  font-size: 15px;
+  font-weight: bold;
+}
