@@ -1,6 +1,6 @@
 {
   "manifest_version": 2,
-  "name": "Simple Note",
+  "name": "SimpleNote",
   "version": "1.0.0",
   "description": "A simple minimalist note app for browser.",
   "icons": {
@@ -14,7 +14,6 @@
   "browser_action": {
     "deafult_icon": "images/icon48.png",
     "default_popup": "popup.html",
-    "default_title": "Simple Note"
-  },
-  "permissions": ["storage"]
+    "default_title": "SimpleNote"
+  }
 }
