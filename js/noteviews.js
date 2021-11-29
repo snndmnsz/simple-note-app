@@ -52,9 +52,6 @@ export default class notesview {
       </a>
       <div class="notes">
       </div>
-      <div class="footer">
-        <p>made with 🖤 by <a href="https://github.com/snndmnsz" target="_blank" rel="noopener noreferrer">snndmnsz</a></p>
-      </div>
     </div>
 
     <div class="add-new-note hidden">
@@ -96,13 +93,13 @@ export default class notesview {
             <i class="ri-heart-3-line"></i>
             <p>support me</p>
           </a>
-          <a class="bug about-btn" href="mailto:snndmnszdev@protonmail.com?subject=Bug Report&body=Which part is not working: " >
+          <a class="bug about-btn" href="" >
             <i class="ri-bug-line"></i>
             <p>bug report</p>
           </a>
         </div>
       </div>
-      <div class="about-footer"> <p>made with 🖤 by <a href="https://github.com/snndmnsz" target="_blank" >snndmnsz</a></p></div>
+      <div class="about-footer"> <p>made with ❤️ by <a href="https://snndmnsz.dev" target="_blank" >snndmnsz</a></p></div>
     </div> 
 
     <div class="deletepopup">
