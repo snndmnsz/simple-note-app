@@ -34,7 +34,7 @@
 }
 
 body {
-  width: 300px;
+  width: 280px;
   height: 385px;
   background-color: var(--bg-main);
   display: flex;
@@ -45,7 +45,7 @@ body {
 }
 
 .container {
-  width: 90%;
+  width: 95%;
   height: 100%;
   justify-self: center;
   align-self: center;
@@ -154,7 +154,6 @@ body {
 
 .notes {
   grid-area: 3 / 1 / 4 / 2;
-
   overflow: scroll;
   scroll-behavior: smooth;
   overflow-x: hidden;
