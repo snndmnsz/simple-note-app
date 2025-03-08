@@ -68,7 +68,7 @@ export default class notesview {
         </div>
 
         <div class="note-text-area">      
-            <textarea id="textarea"  maxlength="300" class="textarea" placeholder="write note here..." ></textarea>
+            <textarea id="textarea"  maxlength="1000" class="textarea" placeholder="write note here..." ></textarea>
             <span class="textarea_count" id="textarea_count">0/350</span>
         </div>
     </div>
@@ -172,8 +172,8 @@ export default class notesview {
     const counter = this.root.querySelector(".textarea_count");
     inputBody.onkeyup = function (e) {
       const number = inputBody.value.length;
-      counter.innerHTML = number + "/300";
-      if (number == "300") {
+      counter.innerHTML = number + "/1000";
+      if (number == "1000") {
         counter.style.color = "#FF5C58";
       } else {
         counter.style.color = "#4d4d4d";
@@ -333,8 +333,8 @@ export default class notesview {
     const counter = this.root.querySelector(".textarea_count");
 
     const number = inputBody.value.length;
-    counter.innerHTML = number + "/300";
-    if (number == "300") {
+    counter.innerHTML = number + "/1000";
+    if (number == "1000") {
       counter.style.color = "#FF5C58";
     } else {
       counter.style.color = "#4d4d4d";

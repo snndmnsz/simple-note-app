@@ -1,7 +1,7 @@
 {
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "SimpleNote",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A simple minimalist note app for browser.",
   "icons": {
     "16": "images/iconmain.png",
@@ -11,15 +11,9 @@
   "author": "snndmnsz",
   "incognito": "not_allowed",
   "short_name": "SN",
-  "browser_action": {
-    "deafult_icon": "images/iconmain.png",
+  "action": {
+    "default_icon": "images/iconmain.png",
     "default_popup": "popup.html",
     "default_title": "SimpleNote"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["js/toggleIcon.js"]
-    }
-  ]
+  }
 }
